@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkflowIQ Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h2>Workflow<span>IQ</span></h2>
+        <p class="subtitle">CUSTOMER ANALYTICS</p>
+
+        <button class="nav active" data-view="overview">Dashboard</button>
+        <button class="nav" data-view="bottlenecks">Bottlenecks</button>
+        <button class="nav" data-view="workflow">Workflow Graph</button>
+        <button class="nav" data-view="recommendations">Recommendations</button>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <div>
+                <p class="eyebrow">CUSTOMER OPERATIONS</p>
+                <h1 id="pageTitle">Dashboard Overview</h1>
+            </div>
+            <label class="upload-btn" for="csvInput">+ Import CSV</label>
+            <input type="file" id="csvInput" accept=".csv" hidden>
+        </header>
+
+        <section class="welcome">
+            <h2>Customer onboarding analytics</h2>
+            <p>Monitor workflow performance and identify friction points.</p>
+        </section>
+
+        <section class="stats">
+            <div class="card">
+                <p>Total Records</p>
+                <h2 id="totalRecords">0</h2>
+            </div>
+            <div class="card">
+                <p>Workflow Stages</p>
+                <h2 id="stageCount">0</h2>
+            </div>
+            <div class="card">
+                <p>Bottlenecks</p>
+                <h2 id="bottleneckCount">0</h2>
+            </div>
+            <div class="card">
+                <p>Average Friction</p>
+                <h2 id="avgFriction">N/A</h2>
+            </div>
+        </section>
+
+        <section class="view" id="overviewView">
+            <div class="panel">
+                <h3>Friction Analysis</h3>
+                <canvas id="frictionChart"></canvas>
+            </div>
+
+            <div class="panel">
+                <h3>Workflow Data</h3>
+                <input id="searchInput" type="text" placeholder="Search records...">
+
+                <div class="table-container">
+                    <table>
+                        <thead id="tableHead"></thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="view hidden" id="bottlenecksView">
+            <div class="panel">
+                <h3>Detected Bottlenecks</h3>
+                <div id="bottleneckList"></div>
+            </div>
+        </section>
+
+        <section class="view hidden" id="workflowView">
+            <div class="panel">
+                <h3>Interactive Workflow Graph</h3>
+                <p>Select a stage to see its details.</p>
+                <div id="workflowGraph" class="workflow-graph"></div>
+                <div id="stageDetails" class="details">
+                    Select a workflow stage.
+                </div>
+            </div>
+        </section>
+
+        <section class="view hidden" id="recommendationsView">
+            <div class="panel">
+                <h3>Recommended Actions</h3>
+                <div id="recommendationList"></div>
+            </div>
+        </section>
+
+        <footer>WorkflowIQ | Customer Onboarding Friction Graph</footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
